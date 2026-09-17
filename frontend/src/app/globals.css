@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+@theme {
+  --color-blue-cornflower: #6798ff;
+  --color-page-ink: #0a0a0a;
+  --color-card-carbon: #1e1e1e;
+  --color-deep-coal: #141414;
+  --color-onyx: #000000;
+  --color-steel-border: #313131;
+  --color-graphite: #454545;
+  --color-fog: #7c7c7c;
+  --color-ash: #a7a7a7;
+  --color-snow: #ffffff;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  :root {
+    --background: var(--color-page-ink);
+    --foreground: var(--color-snow);
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
