@@ -6,7 +6,6 @@ WORKDIR /app
 RUN pip install uv
 
 # Copy project files
-COPY pyproject.toml .
 COPY .env.example .env
 
 # Copy the backend module and other required files

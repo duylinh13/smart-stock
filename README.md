@@ -99,7 +99,7 @@ docker-compose up --build -d
 To run the backend test suite locally:
 ```bash
 # Using uv (Lightning fast Python package manager)
-uv pip install -r pyproject.toml
+uv pip install fastapi uvicorn sqlalchemy psycopg2-binary pydantic pydantic-settings alembic openai anthropic pytest httpx pytest-asyncio
 export PYTHONPATH=.
 uv run pytest
 ```
