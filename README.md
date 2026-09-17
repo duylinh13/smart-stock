@@ -12,8 +12,9 @@
 
 ## ✨ Key Features
 - **Data-Driven ROP Calculation:** Dynamically calculates when to reorder using the standard industry formula: `ROP = (Average Daily Demand × Lead Time) + Safety Stock`.
-- **AI-Powered Insights:** Integrates with OpenAI/Anthropic APIs to transform raw stock numbers into actionable, human-readable insights.
-- **Enterprise-Grade UI/UX:** Built with Next.js 15, Tailwind CSS v4, and Shadcn UI components, applying a strict "Dovetail" dark-mode design system.
+- **AI-Powered Insights (with Graceful Degradation):** Integrates with OpenAI APIs to transform raw stock numbers into actionable insights. Features a **Fail-Fast & Fallback mechanism** that mathematically calculates recommendations locally if the API key is missing or invalid, ensuring 100% system uptime.
+- **Enterprise-Grade UI/UX:** Built with Next.js 15 and Tailwind CSS v4. Features a strict "Command Center" dark-mode design system.
+- **Interactive Visualizations & Animations:** Utilizes **Recharts** for real-time inventory vs. ROP bar charts and **Framer Motion** for premium, staggered component animations.
 - **Background Jobs:** Utilizes APScheduler for periodic background jobs (e.g., daily inventory sweep and alert generation).
 - **Event-Driven Ready:** Pre-configured mock Kafka producers to emit events (e.g., `order_created`) allowing easy integration with microservices.
 - **Fully Dockerized:** Spin up the entire stack (Database, Backend API, Frontend Dashboard) with a single command.
@@ -25,14 +26,15 @@
 - **Framework:** FastAPI (High performance, async-ready)
 - **Database ORM:** SQLAlchemy with Alembic (Migrations)
 - **Background Tasks:** APScheduler
-- **AI Integration:** OpenAI / Anthropic SDK
+- **AI Integration:** OpenAI SDK (with resilient fallback logic)
 - **Testing:** Pytest & HTTPX
 
 ### 2. Frontend (React/TypeScript)
 - **Framework:** Next.js (App Router, Standalone Build)
 - **State/Fetching:** TanStack React Query v5
+- **Visuals & Motion:** Recharts, Framer Motion
 - **Styling:** Tailwind CSS v4 + Custom Design Tokens
-- **UI Library:** Shadcn UI, Lucide Icons
+- **UI Library:** Lucide Icons
 
 ### 3. DevOps & Infrastructure
 - **Containerization:** Docker & Docker Compose
