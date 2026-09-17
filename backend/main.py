@@ -1,12 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.routers import products, inventory, recommendations
+import logging
+from backend.jobs.scheduler import start_scheduler
+
+logging.basicConfig(level=logging.INFO)
 
 app = FastAPI(
     title="SmartStock API",
     description="Mini system for inventory tracking and procurement recommendations",
     version="1.0.0"
 )
+
+@app.on_event("startup")
+def on_startup():
+    start_scheduler()
 
 app.add_middleware(
     CORSMiddleware,
