@@ -22,7 +22,7 @@ jobs:
     - name: Test with pytest
       run: |
         export PYTHONPATH=.
-        uv run pytest
+        python -m pytest
 
   build-frontend:
     runs-on: ubuntu-latest
