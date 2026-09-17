@@ -6,7 +6,7 @@ load_dotenv()
 
 # We'll initialize the client if the key is available
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-client = openai.OpenAI(api_key=OPENAI_API_KEY) if OPENAI_API_KEY else None
+client = openai.OpenAI(api_key=OPENAI_API_KEY, max_retries=0, timeout=5.0) if OPENAI_API_KEY else None
 
 def generate_inventory_explanation(product_name: str, stock: int, rop: int, recommended: int, status: str) -> str:
     """
