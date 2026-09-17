@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-:root {
 @theme {
   --color-blue-cornflower: #6798ff;
   --color-page-ink: #0a0a0a;
@@ -21,6 +20,7 @@
   :root {
     --background: var(--color-page-ink);
     --foreground: var(--color-snow);
+    --radius: 0.5rem;
   }
 }
 
