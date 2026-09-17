@@ -1,7 +1,7 @@
 "use client";
 
 import { useRecommendations } from "@/hooks/useInventoryData";
-import { AlertCircle, Package, ArrowRightLeft, CheckCircle2, TrendingDown, BarChart3, Settings, DownloadCloud } from "lucide-react";
+import { AlertCircle, Package, ArrowRightLeft, CheckCircle2, BarChart3, Settings, DownloadCloud } from "lucide-react";
 import { DashboardCharts } from "@/components/DashboardCharts";
 import { motion } from "framer-motion";
 
