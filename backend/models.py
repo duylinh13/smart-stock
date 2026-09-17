@@ -32,6 +32,7 @@ class Inventory(Base):
     quantity = Column(Integer, default=0)
     daily_demand = Column(Integer, default=0)
     lead_time_days = Column(Integer, default=0)
+    safety_stock = Column(Integer, default=0)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
     product = relationship("Product", back_populates="inventory")

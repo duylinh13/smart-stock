@@ -18,7 +18,8 @@ def get_all_inventory(db: Session = Depends(get_db)):
             product_name=product_name,
             current_stock=inv.quantity,
             daily_demand=inv.daily_demand,
-            lead_time=inv.lead_time_days
+            lead_time=inv.lead_time_days,
+            safety_stock=inv.safety_stock
         ))
     return responses
 
@@ -34,7 +35,8 @@ def get_inventory(product_id: str, db: Session = Depends(get_db)):
         product_name=product_name,
         current_stock=inv.quantity,
         daily_demand=inv.daily_demand,
-        lead_time=inv.lead_time_days
+        lead_time=inv.lead_time_days,
+        safety_stock=inv.safety_stock
     )
 
 @router.post("/update")
@@ -46,7 +48,8 @@ def update_inventory(inventory_update: Inventory, db: Session = Depends(get_db))
             product_id=inventory_update.product_id,
             quantity=inventory_update.stock,
             daily_demand=inventory_update.daily_demand,
-            lead_time_days=inventory_update.lead_time_days
+            lead_time_days=inventory_update.lead_time_days,
+            safety_stock=inventory_update.safety_stock
         )
         db.add(inv)
         db.commit()
@@ -57,6 +60,7 @@ def update_inventory(inventory_update: Inventory, db: Session = Depends(get_db))
     inv.quantity = inventory_update.stock
     inv.daily_demand = inventory_update.daily_demand
     inv.lead_time_days = inventory_update.lead_time_days
+    inv.safety_stock = inventory_update.safety_stock
     db.commit()
     db.refresh(inv)
     return {"message": "Inventory updated", "data": inv}

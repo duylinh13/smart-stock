@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from backend.routers import products, inventory
+from backend.routers import products, inventory, recommendations
 
 app = FastAPI(
     title="SmartStock API",
@@ -9,6 +9,7 @@ app = FastAPI(
 
 app.include_router(products.router)
 app.include_router(inventory.router)
+app.include_router(recommendations.router)
 
 @app.get("/")
 def root():
