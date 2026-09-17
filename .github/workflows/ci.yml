@@ -18,11 +18,13 @@ jobs:
       with:
         python-version: "3.11"
     - name: Install dependencies
-      run: uv pip install --system pytest httpx pytest-asyncio fastapi uvicorn sqlalchemy psycopg2-binary pydantic pydantic-settings alembic openai anthropic
+      run: |
+        uv venv
+        uv pip install fastapi uvicorn sqlalchemy psycopg2-binary pydantic pydantic-settings alembic openai anthropic pytest httpx pytest-asyncio
     - name: Test with pytest
       run: |
         export PYTHONPATH=.
-        python -m pytest
+        uv run pytest
 
   build-frontend:
     runs-on: ubuntu-latest
