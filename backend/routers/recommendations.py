@@ -6,6 +6,7 @@ from backend.schemas.recommendation import RecommendationResponse
 from backend import models
 from backend.database import get_db
 from backend.services.inventory_service import calculate_recommendation
+from backend.services.ai_service import generate_inventory_explanation
 
 router = APIRouter(prefix="/recommendations", tags=["recommendations"])
 
@@ -24,13 +25,22 @@ def get_all_recommendations(db: Session = Depends(get_db)):
             safety_stock=inv.safety_stock
         )
         
+        ai_explanation = generate_inventory_explanation(
+            product_name=product_name,
+            stock=inv.quantity,
+            rop=calc_result["reorder_point"],
+            recommended=calc_result["recommended_quantity"],
+            status=calc_result["status"]
+        )
+        
         responses.append(RecommendationResponse(
             product_id=inv.product_id,
             product_name=product_name,
             current_stock=inv.quantity,
             reorder_point=calc_result["reorder_point"],
             recommended_quantity=calc_result["recommended_quantity"],
-            status=calc_result["status"]
+            status=calc_result["status"],
+            ai_explanation=ai_explanation
         ))
         
     return responses
@@ -49,11 +59,20 @@ def get_recommendation(product_id: str, db: Session = Depends(get_db)):
         safety_stock=inv.safety_stock
     )
     
+    ai_explanation = generate_inventory_explanation(
+        product_name=product_name,
+        stock=inv.quantity,
+        rop=calc_result["reorder_point"],
+        recommended=calc_result["recommended_quantity"],
+        status=calc_result["status"]
+    )
+    
     return RecommendationResponse(
         product_id=inv.product_id,
         product_name=product_name,
         current_stock=inv.quantity,
         reorder_point=calc_result["reorder_point"],
         recommended_quantity=calc_result["recommended_quantity"],
-        status=calc_result["status"]
+        status=calc_result["status"],
+        ai_explanation=ai_explanation
     )
